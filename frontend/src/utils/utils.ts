@@ -1,19 +1,26 @@
 import type { DogsListParams } from "../features/dogs/service";
 
-export const buildPages = (current: number, total: number) => {
+// utils/utils.ts
+export function buildPages(
+  current: number,
+  total: number,
+  siblings: number = 2,
+): (number | "ellipsis")[] {
   const pages: (number | "ellipsis")[] = [];
-
   const add = (p: number | "ellipsis") => pages.push(p);
 
-  if (total <= 9) {
+  if (total <= 1) return [1];
+
+  const maxVisible = 2 * siblings + 5;
+  if (total <= maxVisible) {
     for (let i = 1; i <= total; i++) add(i);
     return pages;
   }
 
   add(1);
 
-  const left = Math.max(2, current - 1);
-  const right = Math.min(total - 1, current + 1);
+  const left = Math.max(2, current - siblings);
+  const right = Math.min(total - 1, current + siblings);
 
   if (left > 2) add("ellipsis");
 
@@ -24,7 +31,7 @@ export const buildPages = (current: number, total: number) => {
   add(total);
 
   return pages;
-};
+}
 
 export const makeId = () => {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) {

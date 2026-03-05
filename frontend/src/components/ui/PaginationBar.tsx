@@ -23,10 +23,15 @@ const PaginationBar = ({
   const [goTo, setGoTo] = useState("");
 
   const commitGoTo = () => {
-    const n = Number(goTo);
+    const raw = goTo.trim();
+    if (!raw) return;
+
+    const n = Number(raw);
     if (!Number.isFinite(n)) return;
+
     const clamped = Math.max(1, Math.min(totalPages, Math.trunc(n)));
-    onPageChange(clamped);
+
+    if (clamped !== page) onPageChange(clamped);
     setGoTo("");
   };
 
@@ -91,7 +96,8 @@ const PaginationBar = ({
           <span className="text-muted">Go to</span>
           <Form.Control
             size="sm"
-            className="w-auto"
+            className="text-center"
+            style={{ width: "70px" }}
             inputMode="numeric"
             min={1}
             value={goTo}
