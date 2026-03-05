@@ -6,10 +6,10 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from django.utils import timezone
 
-from .models.models import Breed, Description, Dog, ContactSubmission
+from .models.models import Dog, ContactSubmission
 from .serializers import (
-    DogSerializer, BreedSerializer,
-    DescriptionSerializer, ContactSubmissionSerializer
+    DogSerializer, 
+    ContactSubmissionSerializer
 )
 
 class StandardResultsSetPagination(PageNumberPagination):
@@ -40,17 +40,6 @@ class DogViewSet(viewsets.ModelViewSet):
         )
 
         return Response({"message": f"Deleted {count} dogs"}, status=status.HTTP_204_NO_CONTENT)
-
-
-class BreedViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Breed.objects.all()
-    serializer_class = BreedSerializer
-
-
-class DescriptionViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Description.objects.all()
-    serializer_class = DescriptionSerializer
-
 
 class ContactSubmissionViewSet(viewsets.ModelViewSet):
     queryset = ContactSubmission.objects.all()
