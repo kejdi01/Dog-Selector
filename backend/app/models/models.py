@@ -17,6 +17,8 @@ class ArchiveQuerySet(models.QuerySet):
             deleted=True,
             deleted_at=timezone.now(),
         )
+    def hard_delete(self):
+        return super().delete()
 
 class ActiveManager(models.Manager):
     def get_queryset(self):
