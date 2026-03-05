@@ -36,6 +36,17 @@ class Command(BaseCommand):
             "Very intelligent breed",
         ]
 
+        notes = [
+            "Good with kids and other dogs.",
+            "House-trained and crate-trained.",
+            "Needs a calm home; anxious around loud noises.",
+            "Loves long walks and playing fetch.",
+            "Shy at first but warms up quickly.",
+            "Great on a leash; knows basic commands.",
+            "High energy — best for active owners.",
+            "Prefers to be the only pet in the home.",
+        ]
+
         breed_objects = []
         description_objects = []
 
@@ -55,7 +66,7 @@ class Command(BaseCommand):
                 description=random.choice(description_objects),
                 status=random.choice(statuses),
                 rating=random.randint(0, 5),
-                note="",
+                note=random.choice(notes),
             )
 
         self.stdout.write(self.style.SUCCESS("Database seeded with 560 dogs"))

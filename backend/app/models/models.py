@@ -101,10 +101,7 @@ class Dog(TimeStampedModel, ArchiveModel):
         db_index=True,
     )
 
-    note = models.TextField(
-        blank=True,
-        default="",
-    )
+    note = models.TextField()
 
     class Meta:
         ordering = ["-created_at"]
