@@ -57,7 +57,7 @@ const DogsTable = ({
   return (
     <div className="table-responsive">
       <Table hover className="align-middle mb-0 table-sm table-md">
-        <thead>
+        <thead className="border-bottom border-dark">
           <tr>
             <th className="ps-3" style={{ width: 40 }}>
               <Form.Check
