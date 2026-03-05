@@ -24,7 +24,7 @@ class DogViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter, filters.OrderingFilter, DjangoFilterBackend]
 
     search_fields = ['breed__name', 'description__title']
-    ordering_fields = ['rating', 'created_at', 'status', 'breed__name', 'description__title']
+    ordering_fields = ['rating', 'created_at', 'status', 'breed__name', 'description__title',"note"]
     filterset_fields = ['status', 'rating']
     ordering = ['status',]
 
